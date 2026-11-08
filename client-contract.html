@@ -136,6 +136,33 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 .sigline{height:90px;border-bottom:1px dashed var(--muted);margin:14px 0 6px;color:#b5aa9a;font-size:12px;display:flex;align-items:flex-end;padding-bottom:4px}
 .stamp{width:90px;height:90px;border:1.5px dashed var(--line);border-radius:50%;display:grid;place-items:center;color:#b5aa9a;font-size:11px;margin-top:10px}
 
+
+/* short version */
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 0 12px;border:1px solid var(--wine);border-radius:6px;overflow:hidden}
+.mode button{padding:8px 6px;border:0;background:#fff;color:var(--wine);font:inherit;font-size:13px;font-weight:500;cursor:pointer}
+.mode button.on{background:var(--wine);color:#fff}
+.short .ttl{margin-bottom:12px}
+.short h3{font-size:14px;margin:12px 0 3px}
+.short .kicker{margin-top:14px}
+.short .two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.short .two>div{border-top:1px solid var(--line);padding-top:6px}
+.short .two b.nm{display:block;font-size:14.5px;color:var(--green);font-weight:500;line-height:1.7}
+.short .two small{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.04em;line-height:1.6}
+.short .kv{grid-template-columns:70px 1fr;gap:1px 10px;margin:4px 0 0;font-size:12.5px;line-height:1.8}
+.short ul.dl{margin:0;padding-inline-start:18px}
+.short ul.dl li{margin:0 0 5px;line-height:1.85;font-size:13px}
+.short ul.dl li b{color:var(--ink)}
+.short table{margin:2px 0}
+.short td{padding:2px 0;font-size:12.5px;line-height:1.7}
+.short th{padding:3px 0;font-size:11.5px}
+.short .terms li{margin:0 0 5px;font-size:12.5px;line-height:1.85}
+.short .note{margin:4px 0 0;font-size:11.5px;line-height:1.7}
+.short .sign{margin-top:10px;gap:26px}
+.short .sign .box{padding-top:6px;line-height:1.7;font-size:12.5px}
+.short .sign .name{font-size:14.5px}
+.short .sigline{height:44px;margin:6px 0 4px}
+.short .foot{margin-top:auto}
+
 [hidden]{display:none!important}
 
 @media (max-width:1100px){
@@ -151,7 +178,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
   .app{display:block}
   .docs{padding:0;gap:0;display:block}
   .page{box-shadow:none;margin:0;width:210mm;min-height:297mm;break-after:page;page-break-after:always}
-  .page:last-child{break-after:auto;page-break-after:auto}
+  .page.last{break-after:auto;page-break-after:auto}
   [contenteditable]:hover{background:none}
   .logo,.stamp{border-color:transparent}
 }
@@ -164,6 +191,10 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 <aside class="panel" id="panel">
   <h1>لوحة تعبئة العقد</h1>
   <p class="hint">عبّئ بيانات العميل واختر الخدمات، وتتحدث صفحات العقد فورًا. يمكنك تعديل أي نص داخل العقد بالنقر عليه، ثم اطبع واحفظ نسخة PDF.</p>
+  <div class="mode" id="mode">
+    <button type="button" data-mode="full">النسخة الكاملة</button>
+    <button type="button" data-mode="short">النسخة المختصرة</button>
+  </div>
   <div class="btns">
     <button class="btn" onclick="window.print()">طباعة / حفظ PDF</button>
     <button class="btn alt" id="reset">عقد جديد</button>
@@ -233,7 +264,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 <main class="docs">
 
 <!-- cover -->
-<section class="page cover">
+<section class="page full cover">
   <div class="brand"><span data-bind="coName"></span><div class="logo" id="coLogo" title="انقر لإضافة الشعار">الشعار</div></div>
   <h1>
     <span class="fit" data-max="64" data-min="40"><span>عقد تقديم خدمـات</span></span>
@@ -248,7 +279,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- toc -->
-<section class="page toc">
+<section class="page full toc">
   <div class="head"><b data-bind="coName"></b><span>فهرس العقد</span><span class="yr" data-bind="year"></span></div>
   <div class="sp"></div>
   <ol>
@@ -263,7 +294,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- 01 overview -->
-<section class="page">
+<section class="page full">
   <div class="head"><b data-bind="coName"></b><span>01 · الأطراف ونبذة عن المشروع</span><span class="yr" data-bind="year"></span></div>
   <p class="kicker">القسم الأول</p>
   <div class="ttl"><h2 class="fit" data-max="44" data-min="28"><span>الأطراف ونبذة عن المشـــروع</span></h2></div>
@@ -295,7 +326,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- 02 scope -->
-<section class="page">
+<section class="page full">
   <div class="head"><b data-bind="coName"></b><span>02 · نطاق العمل والمخرجات</span><span class="yr" data-bind="year"></span></div>
   <p class="kicker">القسم الثاني</p>
   <div class="ttl"><h2 class="fit" data-max="44" data-min="28"><span>نطاق العمل والمخرجـــات</span></h2></div>
@@ -323,7 +354,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- 02 scope (continued) -->
-<section class="page" data-needs-svc>
+<section class="page full" data-needs-svc>
   <div class="head"><b data-bind="coName"></b><span>02 · نطاق العمل والمخرجات · تابع</span><span class="yr" data-bind="year"></span></div>
   <div class="ttl" style="margin-top:26px"></div>
   <div class="scope" contenteditable="true">
@@ -364,7 +395,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- 03 timeline -->
-<section class="page">
+<section class="page full">
   <div class="head"><b data-bind="coName"></b><span>03 · الجدول الزمني</span><span class="yr" data-bind="year"></span></div>
   <p class="kicker">القسم الثالث</p>
   <div class="ttl"><h2 class="fit" data-max="44" data-min="28"><span>الجدول الزمنـــي</span></h2></div>
@@ -385,7 +416,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- 04 financial -->
-<section class="page">
+<section class="page full">
   <div class="head"><b data-bind="coName"></b><span>04 · القيمة المالية والدفعات</span><span class="yr" data-bind="year"></span></div>
   <p class="kicker">القسم الرابع</p>
   <div class="ttl"><h2 class="fit" data-max="44" data-min="28"><span>القيمة المالية والدفعـــات</span></h2></div>
@@ -421,7 +452,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- 05 terms -->
-<section class="page">
+<section class="page full">
   <div class="head"><b data-bind="coName"></b><span>05 · الشروط والأحكام</span><span class="yr" data-bind="year"></span></div>
   <p class="kicker">القسم الخامس</p>
   <div class="ttl"><h2 class="fit" data-max="44" data-min="28"><span>الشروط والأحكـــام</span></h2></div>
@@ -437,7 +468,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- 05 terms (continued) -->
-<section class="page">
+<section class="page full">
   <div class="head"><b data-bind="coName"></b><span>05 · الشروط والأحكام · تابع</span><span class="yr" data-bind="year"></span></div>
   <div class="ttl" style="margin-top:26px"></div>
   <ol class="terms" style="counter-reset:t 6" contenteditable="true">
@@ -452,7 +483,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
 </section>
 
 <!-- 06 signature -->
-<section class="page">
+<section class="page full">
   <div class="head"><b data-bind="coName"></b><span>06 · التوقيع والاعتماد</span><span class="yr" data-bind="year"></span></div>
   <p class="kicker">القسم السادس</p>
   <div class="ttl"><h2 class="fit" data-max="44" data-min="28"><span>التوقيع والاعتمـــاد</span></h2></div>
@@ -479,6 +510,99 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
   <div class="foot"><span>07</span><span></span></div>
 </section>
 
+
+<!-- ================= SHORT VERSION ================= -->
+<section class="page short" hidden>
+  <div class="head"><b data-bind="coName"></b><span>ملخص العقد</span><span class="yr" data-bind="year"></span></div>
+  <p class="kicker">النسخة المختصرة · رقم العقد <span data-bind="no"></span> · <span data-bind="dateFmt"></span></p>
+  <div class="ttl"><h2 class="fit" data-max="44" data-min="28"><span>ملخـــص العقــد</span></h2></div>
+  <div class="two">
+      <div>
+        <small>الطرف الأول · مقدّم الخدمة</small><b class="nm" data-bind="coName"></b>
+        <dl class="kv"><dt>السجل</dt><dd data-bind="coCR"></dd><dt>الضريبي</dt><dd data-bind="coVat"></dd><dt>التواصل</dt><dd><span data-bind="coEmail"></span> · <span data-bind="coPhone"></span></dd><dt>الممثل</dt><dd><span data-bind="coRep"></span> — <span data-bind="coRepTitle"></span></dd></dl>
+      </div>
+      <div>
+        <small>الطرف الثاني · العميل</small><b class="nm" data-bind="clName"></b>
+        <dl class="kv"><dt>السجل</dt><dd data-bind="clCR"></dd><dt>الضريبي</dt><dd data-bind="clVat"></dd><dt>التواصل</dt><dd><span data-bind="clEmail"></span> · <span data-bind="clPhone"></span></dd><dt>الممثل</dt><dd><span data-bind="clRep"></span> — <span data-bind="clRepTitle"></span></dd></dl>
+      </div>
+  </div>
+  <h3>المشروع</h3>
+  <p style="margin:0" contenteditable="true"><b data-bind="project"></b>. يقدّم الطرف الأول الخدمات الموضحة أدناه للطرف الثاني وفق هذا العقد.</p>
+  <h3>ما سيستلمه العميل (نطاق العمل)</h3>
+  <ul class="dl" contenteditable="true">
+    <li data-svc="design"><b>تصميم الموقع:</b> تصميم <span data-bind="pages"></span> صفحات فريدة على Figma، متجاوبة مع الجوال والحاسب، مع <span data-bind="rev"></span> جولات تعديل.</li>
+    <li data-svc="dev"><b>تطوير الموقع:</b> برمجة الموقع وفق التصميم المعتمد، ونظام إدارة محتوى يحدّث العميل به محتواه، وحركات خفيفة، وأداء عالٍ، وربط Google Analytics، مع <span data-bind="rev"></span> جولات تعديل.</li>
+    <li data-svc="seo"><b>تحسين محركات البحث:</b> الإعداد التقني للموقع، وتحسين المحتوى والأداء، وربط Search Console.</li>
+    <li data-svc="social"><b>الأصول الرقمية:</b> أيقونة الموقع وصور المشاركة الاجتماعية.</li>
+    <li data-svc="host"><b>الاستضافة والنطاق:</b> حجز النطاق واستضافة السنة الأولى مع شهادة SSL ونسخ احتياطية، ويتحمّل العميل تجديدها بعد ذلك.</li>
+    <li data-svc="maint"><b>الصيانة والدعم:</b> دعم فني لمدة <span data-bind="supportM"></span> أشهر بعد التسليم، وإصلاح الأخطاء وتحديثات الأمان.</li>
+  </ul>
+  <p class="note" contenteditable="true">خارج النطاق: الخطوط المدفوعة وأدوات الأطراف الثالثة والصور المرخصة، وأي تعديل بعد الجولات المتفق عليها؛ ويُسعَّر ويُعتمد كتابةً قبل تنفيذه.</p>
+  <h3>المدة الزمنية</h3>
+  <table>
+    <tbody>
+      <tr><td contenteditable="true">الانطلاق والاستراتيجية</td><td class="n"><span data-bind="w_on"></span> أسبوع</td></tr>
+      <tr data-svc="design"><td contenteditable="true">التصميم</td><td class="n"><span data-bind="w_design"></span> أسابيع</td></tr>
+      <tr data-svc="dev"><td contenteditable="true">التطوير</td><td class="n"><span data-bind="w_dev"></span> أسابيع</td></tr>
+      <tr data-svc="seo"><td contenteditable="true">تحسين محركات البحث</td><td class="n"><span data-bind="w_seo"></span> أسبوع</td></tr>
+      <tr><td contenteditable="true">مدة احتياطية</td><td class="n"><span data-bind="w_buf"></span> أسبوع</td></tr>
+      <tr class="total"><td>إجمالي المدة المتوقعة (تبدأ عند استلام الدفعة المقدمة)</td><td class="n"><span data-bind="weeks"></span> أسبوع</td></tr>
+    </tbody>
+  </table>
+  <div class="foot"><span>01</span><span></span></div>
+</section>
+
+<section class="page short" hidden>
+  <div class="head"><b data-bind="coName"></b><span>ملخص العقد · القيمة والشروط</span><span class="yr" data-bind="year"></span></div>
+  <h3 style="margin-top:16px">القيمة والدفعات</h3>
+  <table>
+    <thead><tr><th>البند</th><th class="n">القيمة (<span data-bind="cur"></span>)</th></tr></thead>
+    <tbody>
+      <tr data-svc="design"><td>تصميم الموقع</td><td class="n" data-money="p_design"></td></tr>
+      <tr data-svc="dev"><td>تطوير الموقع</td><td class="n" data-money="p_dev"></td></tr>
+      <tr data-svc="seo"><td>تحسين محركات البحث</td><td class="n" data-money="p_seo"></td></tr>
+      <tr data-svc="social"><td>الأصول الرقمية</td><td class="n" data-money="p_social"></td></tr>
+      <tr data-svc="host"><td>الاستضافة والنطاق</td><td class="n" data-money="p_host"></td></tr>
+      <tr data-svc="maint"><td>الصيانة والدعم</td><td class="n" data-money="p_maint"></td></tr>
+      <tr data-vat><td>المجموع قبل الضريبة · الضريبة (<span data-bind="vat"></span>%)</td><td class="n"><span data-money="sub"></span> · <span data-money="vatAmt"></span></td></tr>
+      <tr class="total"><td>إجمالي قيمة العقد</td><td class="n"><span data-money="total"></span> <span data-bind="cur"></span></td></tr>
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th>الدفعة</th><th class="n">النسبة</th><th class="n">القيمة</th></tr></thead>
+    <tbody>
+      <tr><td contenteditable="true">دفعة مقدمة عند توقيع العقد</td><td class="n"><span data-bind="pc1"></span>%</td><td class="n" data-money="a1"></td></tr>
+      <tr><td contenteditable="true">عند اعتماد التصميم</td><td class="n"><span data-bind="pc2"></span>%</td><td class="n" data-money="a2"></td></tr>
+      <tr><td contenteditable="true">عند اكتمال التطوير والتسليم</td><td class="n"><span data-bind="pc3"></span>%</td><td class="n" data-money="a3"></td></tr>
+    </tbody>
+  </table>
+  <p class="note">التحويل إلى: <span data-bind="coName"></span> · آيبان <span data-bind="coIban" dir="ltr"></span></p>
+  <h3>أهم الشروط</h3>
+  <ol class="terms" contenteditable="true">
+    <li><b>السداد.</b> تُسدَّد الفواتير خلال <span data-bind="payDays"></span> يومًا من إصدارها دون أي غرامة عند التأخر، وللطرف الأول إيقاف الخدمات إن لم يُسدَّد المبلغ خلال <span data-bind="suspendDays"></span> يومًا من الاستحقاق.</li>
+    <li><b>التزامات العميل.</b> تقديم الملاحظات والمحتوى خلال <span data-bind="feedbackDays"></span> أيام عمل، وإلا تُمدَّد مدة المشروع بالقدر نفسه.</li>
+    <li><b>التعديلات.</b> تقتصر على الجولات المتفق عليها، وأي زيادة تُسعَّر وتُعتمد كتابةً.</li>
+    <li><b>الملكية الفكرية.</b> تنتقل إلى العميل بعد سداد كامل المستحقات، ويحق للطرف الأول عرض المشروع ضمن معرض أعماله ما لم يطلب العميل خلاف ذلك كتابةً.</li>
+    <li><b>الإلغاء.</b> يدفع العميل مقابل الجهد المبذول حتى تاريخ الإلغاء، وإذا ألغى الطرف الأول فلا يدفع إلا مقابل الأعمال التي ينوي استخدامها.</li>
+    <li><b>السرية والنظام.</b> يلتزم الطرفان بسرية المعلومات، ويخضع العقد لأنظمة المملكة العربية السعودية.</li>
+  </ol>
+  <div class="sign">
+    <div class="box">
+      <small>الطرف الأول · مقدّم الخدمة</small>
+      <div class="name" data-bind="coName"></div>
+      <div><span data-bind="coRep"></span> — <span data-bind="coRepTitle"></span></div>
+      <div class="sigline">التوقيع</div>
+    </div>
+    <div class="box">
+      <small>الطرف الثاني · العميل</small>
+      <div class="name" data-bind="clName"></div>
+      <div><span data-bind="clRep"></span> — <span data-bind="clRepTitle"></span></div>
+      <div class="sigline">التوقيع</div>
+    </div>
+  </div>
+  <div class="foot"><span>02</span><span></span></div>
+</section>
+
 </main>
 </div>
 
@@ -494,7 +618,7 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
     p_design:0,p_dev:0,p_seo:0,p_social:0,p_host:0,p_maint:0,supportM:3,
     w_on:1,w_design:4,w_dev:6,w_seo:2,w_buf:1,
     pc1:50,pc2:25,pc3:25,
-    payDays:14,suspendDays:28,remindDays:7,feedbackDays:5
+    mode:'full',payDays:14,suspendDays:28,remindDays:7,feedbackDays:5
   };
   var inputs=[].slice.call(document.querySelectorAll('[data-f]'));
   var state={};
@@ -546,16 +670,28 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
       el.hidden=!s['s_'+el.getAttribute('data-svc')];
     });
     document.querySelectorAll('[data-vat]').forEach(function(el){el.hidden=!(s.vat>0)});
+    var short=s.mode==='short';
     document.querySelectorAll('[data-needs-svc]').forEach(function(pg){
-      pg.hidden=![].some.call(pg.querySelectorAll('.svcblock'),function(b){return !b.hidden});
+      pg.hidden=short||![].some.call(pg.querySelectorAll('.svcblock'),function(b){return !b.hidden});
     });
-    var n=0;
+    document.querySelectorAll('.page').forEach(function(pg){
+      if(pg.classList.contains('short'))pg.hidden=!short;
+      else if(!pg.hasAttribute('data-needs-svc'))pg.hidden=short;
+    });
+    document.querySelectorAll('#mode button').forEach(function(b){
+      b.classList.toggle('on',b.getAttribute('data-mode')===(short?'short':'full'));
+    });
+    var n=0,lastPg=null;
     document.querySelectorAll('.page').forEach(function(pg,i){
-      if(pg.hidden||i===0)return;
+      pg.classList.remove('last');
+      if(pg.hidden)return;
+      lastPg=pg;
+      if(pg.classList.contains('cover'))return;
       n++;
       var f=pg.querySelector('.foot span');
       if(f)f.textContent=(n<10?'0':'')+n;
     });
+    if(lastPg)lastPg.classList.add('last');
     document.getElementById('pcWarn').style.display=(s.pc1+s.pc2+s.pc3===100)?'none':'block';
   }
 
@@ -622,6 +758,14 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
   function update(){read();render();fit()}
   inputs.forEach(function(el){el.addEventListener('input',update);el.addEventListener('change',update)});
 
+  document.querySelectorAll('#mode button').forEach(function(b){
+    b.addEventListener('click',function(){
+      state.mode=b.getAttribute('data-mode');
+      try{history.replaceState(null,'',state.mode==='short'?'#short':location.pathname+location.search)}catch(e){}
+      update();window.scrollTo(0,0);
+    });
+  });
+
   document.getElementById('reset').addEventListener('click',function(){
     if(!confirm('سيتم مسح بيانات العميل الحالية والبدء بعقد جديد. هل تريد المتابعة؟'))return;
     try{localStorage.removeItem(KEY)}catch(e){}
@@ -642,7 +786,9 @@ tr.total td{font-weight:500;color:var(--ink);border-bottom:1px solid var(--ink)}
   window.addEventListener('resize',fit);
   window.addEventListener('beforeprint',fit);
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
-  load();render();fit();
+  load();
+  if(location.hash==='#short')state.mode='short';
+  render();fit();
 })();
 </script>
 </body>
